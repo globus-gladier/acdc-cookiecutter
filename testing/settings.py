@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'acdc_portal.urls'
+ROOT_URLCONF = 'testing.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'acdc_portal.wsgi.application'
+WSGI_APPLICATION = 'testing.wsgi.application'
 
 
 # Database
