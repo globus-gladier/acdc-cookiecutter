@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 
 version_ns = {}
-with open(os.path.join('acdc_portal', 'version.py')) as f:
+with open(os.path.join('{{cookiecutter.project_slug}}', 'version.py')) as f:
     exec(f.read(), version_ns)
 version = version_ns['__version__']
 
@@ -16,7 +16,7 @@ with open('requirements.txt') as reqs:
 
 
 setup(
-    name='acdc_portal',
+    name='{{cookiecutter.project_slug}}',
     description='A portal for ACDC at the Advanced Photon Source',
     url='',
     maintainer='The Gladier Team',

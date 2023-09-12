@@ -8,6 +8,8 @@ def example_view(request):
     Rendering any template off of base should be fine, for example:
 
     ```
+    {% raw %} 
+
     {% extends "globus-portal-framework/v2/base.html" %}
 
     {% block body %}
@@ -15,6 +17,8 @@ def example_view(request):
     <h1>Hello {{context}}</h1>
 
     {% endblock %}
+
+    {% endraw %}
     ```
     Please note the ALCF portal uses custom branding, and any changes rendered locally will
     change according to branding there. Double check any styling changes before deployment.
