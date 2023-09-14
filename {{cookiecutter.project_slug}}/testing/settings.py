@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from {{cookiecutter.project_slug}}.app import SEARCH_INDEXES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    '{{cookiecutter.project_slug}}',
+    "globus_portal_framework",
+    "social_django",
 ]
 
 MIDDLEWARE = [
@@ -47,6 +51,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'globus_portal_framework.middleware.ExpiredTokenMiddleware',
+    'globus_portal_framework.middleware.GlobusAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+]
+
+# Authentication backends setup OAuth2 handling and where user data should be
+# stored
+AUTHENTICATION_BACKENDS = [
+    'globus_portal_framework.auth.GlobusOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 ROOT_URLCONF = 'testing.urls'
@@ -54,7 +68,7 @@ ROOT_URLCONF = 'testing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'globus_portal_framework.context_processors.globals',
             ],
         },
     },
@@ -79,6 +94,29 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "stream": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {"handlers": ["stream"], "level": "INFO"},
+        "django.db.backends": {"handlers": ["stream"], "level": "WARNING"},
+        "globus_portal_framework": {"handlers": ["stream"], "level": "INFO"},
+        "{{cookiecutter.project_slug}}": {
+            "handlers": ["stream"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
+
 
 
 # Internationalization

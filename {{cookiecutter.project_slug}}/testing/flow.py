@@ -3,9 +3,10 @@ Make sure you are part of the Globus Flows Users group so that you can deploy th
 or delete any prior flows before running this example.
 """
 from gladier import GladierBaseClient, GladierBaseTool, generate_flow_definition
+from django.conf import settings
 from pprint import pprint
 
-# from testing.
+index = settings.SEARCH_INDEX["{{my}}"]
 
 
 def gather_metadata(publishv2, **data) -> dict:
