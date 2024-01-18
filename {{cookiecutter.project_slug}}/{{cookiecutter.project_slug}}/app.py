@@ -9,7 +9,7 @@ class {{cookiecutter.project_slug.capitalize().replace("_", "")}}(AppConfig):
 
 SEARCH_INDEXES = {
     "{{cookiecutter.project_slug}}": {
-        "uuid": "",
+        "uuid": "{{cookiecutter.search_index_uuid}}",
         "name": "{{cookiecutter.project_name}}",
         "fields": [],
     }
