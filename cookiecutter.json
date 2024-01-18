@@ -1,5 +1,5 @@
 {
-    "project_name": "My Awesome Project",
+    "project_name": "My Science Portal",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-    "description": "Behold My Awesome Project!"
+    "description": "ProjectName is a technique to resolve structures of microscopic materials."
 }
