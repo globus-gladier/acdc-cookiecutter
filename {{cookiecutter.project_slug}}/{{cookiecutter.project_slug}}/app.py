@@ -11,6 +11,7 @@ SEARCH_INDEXES = {
     "{{cookiecutter.project_slug}}": {
         "uuid": "{{cookiecutter.search_index_uuid}}",
         "name": "{{cookiecutter.project_name}}",
+        "template_override_dir": "{{cookiecutter.project_slug}}",
         "fields": [],
     }
 }
