@@ -6,7 +6,7 @@ from gladier import GladierBaseClient, GladierBaseTool, generate_flow_definition
 from django.conf import settings
 from pprint import pprint
 
-index = settings.SEARCH_INDEX["{{my}}"]
+index = settings.SEARCH_INDEXES["{{cookiecutter.project_slug}}"]
 
 
 def gather_metadata(publishv2, **data) -> dict:
